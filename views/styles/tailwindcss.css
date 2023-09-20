@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+  }
+}
+
+@layer components {
+  .btn_m {
+    @apply bg-neutral-100  hover:bg-gray-100 text-neutral-600  font-semibold py-2 px-4 border border-gray-400 rounded shadow;
+  }
+
+  .panel_chat_grid {
+    grid-template-rows: 0.1fr 1fr 0.1fr;
+  }
+
+  .input_card {
+    outline-color: transparent;
+    background-color: white;
+  }
+  .input_card:focus {
+    height: 100%;
+    padding: 0px;
+    margin: 0;
+  }
+  input[disabled] {
+    background-color: white; /* Cambia el color de fondo */
+  }
+}

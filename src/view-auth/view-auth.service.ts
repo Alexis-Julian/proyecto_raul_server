@@ -3,14 +3,14 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class ViewAuthService {
   ViewLogin() {
-    return 'Login';
+    return 'login';
   }
 
   ViewRegister() {
-    return 'Register';
+    return 'register';
   }
 
   ViewRecover() {
-    return 'Recover';
+    return 'index';
   }
 }
