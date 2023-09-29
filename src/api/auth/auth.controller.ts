@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Res } from '@nestjs/common';
+import { Controller, Post, Body, Res, Req, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
@@ -8,16 +8,22 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  userRegister(@Res({ passthrough: true }) response, @Body() userObject: RegisterAuthDto) {
+  userRegister(@Res({ passthrough: true }) response: any, @Req() req: any, @Body() userObject: RegisterAuthDto) {
     return this.authService.register(userObject, (token: string) => {
+      req.session.token = token;
       response.cookie('token', token);
     });
   }
 
   @Post('login')
-  async userLogin(@Res({ passthrough: true }) response: any, @Body() userObject: LoginAuthDto) {
+  async userLogin(@Res({ passthrough: true }) response: any, @Req() req: any, @Body() userObject: LoginAuthDto) {
     return this.authService.login(userObject, (token: string) => {
+      req.session.token = token;
       response.cookie('token', token);
     });
+  }
+  @Get('/sessions')
+  async getSessions(@Req() req: any) {
+    return req.session;
   }
 }

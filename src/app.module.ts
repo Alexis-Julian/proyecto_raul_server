@@ -9,8 +9,9 @@ import { ViewProductsModule } from './view-products/view-products.module';
 import { SessionModule } from './api/session/session.module';
 import { UserModule } from './api/user/user.module';
 import { AuthModule } from './api/auth/auth.module';
+import { ProductModule } from './api/product/product.module';
 @Module({
-  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGO), SessionModule, UserModule, AuthModule, ViewAuthModule, ViewProductsModule],
+  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGO), ProductModule, SessionModule, UserModule, AuthModule, ViewAuthModule, ViewProductsModule, ProductModule],
   controllers: [],
   providers: [],
 })

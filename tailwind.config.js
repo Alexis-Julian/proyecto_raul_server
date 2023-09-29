@@ -1,11 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
-  content: [
-    './views/*.{html,js,handlebars}',
-    './views/partials/*.{html,js,handlebars}',
-    './node_modules/flowbite/**/*.js',
-  ],
+  content: ['./views/*.{hbs,html,js,handlebars}', './views/partials/*.{html,js,handlebars,hbs}', './node_modules/flowbite/**/*.js'],
   theme: {
     extend: {
       colors: {
