@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-color: rgb(221, 221, 221);
+  --secondary-color: rgb(34, 40, 49);
+  --tertiary-color: rgb(48, 71, 94);
+  --quaternary-color: rgb(240, 84, 84);
+}
+
 @layer base {
   html {
-    font-family: 'Quicksand', sans-serif;
+    /* font-family: 'Quicksand', sans-serif; */
+    font-family: 'Poppins', sans-serif;
     font-size: 0.9rem;
   }
 }

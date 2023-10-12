@@ -1,4 +1,5 @@
-import { Injectable, HttpException, HttpStatus, HttpCode } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductDao } from '../../dao/product.dao';
 import { CreateProductDto } from './dto/create-product.dto';

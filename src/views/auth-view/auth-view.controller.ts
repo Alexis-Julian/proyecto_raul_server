@@ -1,12 +1,11 @@
-import { Controller, Get, Res, Render } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Get, Render } from '@nestjs/common';
 import { AuthViewService } from './auth-view.service';
 @Controller('view/auth')
 export class AuthViewController {
   constructor(private authService: AuthViewService) {}
   @Get()
   @Render('auth')
-  AuthView(@Res() res: Response) {
+  AuthView() {
     return { message: 'Hello World' };
   }
 }

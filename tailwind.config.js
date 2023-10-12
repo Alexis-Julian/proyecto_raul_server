@@ -4,7 +4,15 @@ export default {
   content: ['./views/*.{hbs,html,js,handlebars}', './views/partials/*.{html,js,handlebars,hbs}', './node_modules/flowbite/**/*.js'],
   theme: {
     extend: {
+      backgroundImage: {
+        'meteor-svg': "url('/svg/Meteor.svg')",
+        'footer-texture': "url('/img/footer-texture.png')",
+      },
       colors: {
+        'primary-color': 'var(--primary-color)',
+        'secondary-color': 'var(--secondary-color)',
+        'tertiary-color': 'var(--tertiary-color)',
+        'quaternary-color': 'var(--quaternary-color)',
         primary: {
           50: '#eff6ff',
           100: '#dbeafe',
@@ -20,25 +28,9 @@ export default {
         },
       },
     },
-    body: [
-      'Inter',
-      'ui-sans-serif',
-      'system-ui',
-      '-apple-system',
-      'system-ui',
-      'Segoe UI',
-      'Roboto',
-      'Helvetica Neue',
-      'Arial',
-      'Noto Sans',
-      'sans-serif',
-      'Apple Color Emoji',
-      'Segoe UI Emoji',
-      'Segoe UI Symbol',
-      'Noto Color Emoji',
-    ],
+    body: ['Poppins', 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
     fontFamily: {
-      sans: ['Lato', 'Quicksand', ...defaultTheme.fontFamily.sans],
+      sans: ['sans-serif', 'Lato', 'Quicksand', ...defaultTheme.fontFamily.sans],
     },
   },
   plugins: [require('@tailwindcss/forms'), require('flowbite/plugin')],
