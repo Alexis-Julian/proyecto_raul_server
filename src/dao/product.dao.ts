@@ -13,7 +13,7 @@ export class ProductDao {
     try {
       return await this.productModel.findById(id);
     } catch (err) {
-      console.log('Errror:' + err.message);
+      //console.log('Errror:' + err.message);
       return null;
     }
   }
@@ -55,7 +55,7 @@ export class ProductDao {
     try {
       return await this.productModel.findByIdAndDelete(id);
     } catch (err) {
-      console.log('Error:' + err.message);
+      //console.log('Error:' + err.message);
     }
   }
 
@@ -65,7 +65,7 @@ export class ProductDao {
 
       return productFinds;
     } catch (err) {
-      console.log('Error:' + err.message);
+      //console.log('Error:' + err.message);
     }
   }
 }

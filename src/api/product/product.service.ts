@@ -1,4 +1,4 @@
-import { Injectable, HttpException } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, HttpCode } from '@nestjs/common';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductDao } from '../../dao/product.dao';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -11,13 +11,17 @@ interface ProductPaginate {
 export class ProductService {
   constructor(private readonly ProductDao: ProductDao) {}
   async create(ObjectProductNew: CreateProductDto) {
-    return await this.ProductDao.create(ObjectProductNew);
+    const productCreate = await this.ProductDao.create(ObjectProductNew);
+
+    if (!productCreate) throw new HttpException('REPEAT_FIELD', HttpStatus.CONFLICT);
+
+    return productCreate;
   }
 
   async findAll(): Promise<ProductPaginate | any> {
     const productFind = await this.ProductDao.findAll();
 
-    if (!productFind) return new HttpException('NO_EXISTING_PRODUCT', 404);
+    if (!productFind) throw new HttpException('NO_EXISTING_PRODUCT', HttpStatus.NOT_FOUND);
 
     return productFind;
   }
@@ -25,7 +29,7 @@ export class ProductService {
   async findOne(id: string) {
     const productFind = await this.ProductDao.findById(id);
 
-    if (!productFind) return new HttpException('PRODUCT_NOT_FOUND', 404);
+    if (!productFind) throw new HttpException('PRODUCT_NOT_FOUND', HttpStatus.NOT_FOUND);
 
     return productFind;
   }
@@ -33,18 +37,24 @@ export class ProductService {
   async update(id: string, updateProductDto: UpdateProductDto) {
     const productFind = await this.ProductDao.findByIdAndUpdate(id, updateProductDto);
 
+    if (!productFind) throw new HttpException('PRODUCT_NOT_FOUND', HttpStatus.NOT_FOUND);
+
     return productFind;
   }
 
   async findById(id: string) {
     const productFind = await this.ProductDao.findById(id);
 
-    if (!productFind) return new HttpException('PRODUCT_NOT_FOUND', 404);
+    if (!productFind) throw new HttpException('PRODUCT_NOT_FOUND', HttpStatus.NOT_FOUND);
 
     return productFind;
   }
 
   async remove(id: string) {
-    return await this.ProductDao.remove(id);
+    const productDelete = await this.ProductDao.remove(id);
+
+    if (!productDelete) throw new HttpException('PRODUCT_NOT_FOUND', HttpStatus.NOT_FOUND);
+
+    return productDelete;
   }
 }
