@@ -11,7 +11,6 @@ export class UserDao {
   async findById(id: any) {
     try {
       const userFind: User = await this.userModel.findById(id);
-
       return userFind;
     } catch (err) {
       console.log('Error:' + err.message);
@@ -22,7 +21,6 @@ export class UserDao {
   async findOne(query?: any) {
     try {
       const userFind: User = await this.userModel.findOne(query && query);
-
       return userFind;
     } catch (err) {
       console.log('Error:' + err.message);

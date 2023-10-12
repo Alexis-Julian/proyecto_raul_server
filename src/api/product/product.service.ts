@@ -1,9 +1,7 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { ProductDao } from 'src/dao/product.dao';
+import { ProductDao } from '../../dao/product.dao';
 import { CreateProductDto } from './dto/create-product.dto';
-/* De test */
-console.log(ProductDao);
 
 interface ProductPaginate {
   docs: [];

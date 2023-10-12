@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { UserDao } from 'src/dao/user.dao';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserSchema } from 'src/schemas/user.model';
+import { UserSchema } from '../../schemas/user.model';
 import { JwtModule } from '@nestjs/jwt';
+import { UserDao } from '../../dao/user.dao';
 
 import { ConfigModule } from '@nestjs/config';
 

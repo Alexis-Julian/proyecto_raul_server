@@ -27,11 +27,15 @@ export class AuthService {
     userObjectRegister = { ...userObjectRegister, password: encrypted };
     /* Falta agregar el token,
      validar que los campos se creen correctamente  */
-    addToken('1');
-    return this.UserDao.create(userObjectRegister);
+    //addToken('1');
+    const user = this.UserDao.create(userObjectRegister);
+
+    if (!user) return new HttpException('ERROR_CREATE_USER', 404);
+
+    return new HttpException(user, 201);
   }
 
-  async login(userObjectLogin: LoginAuthDto, addToken: CallbackType) {
+  async login(userObjectLogin: LoginAuthDto) {
     const { email, password } = userObjectLogin;
 
     const findUser = await this.UserDao.findOne({ email });
@@ -39,15 +43,19 @@ export class AuthService {
     if (!findUser) return new HttpException('USER_NOT_FOUND', 404);
 
     const checkPassword = await compare(password, findUser.password);
-
     if (!checkPassword) return new HttpException('PASSWORD_INCORRECT', 403);
 
     const payload = { id: findUser.id, email: findUser.email, username: findUser.username, img: findUser.img || 'no image' };
 
     const token = await this.jwtService.signAsync(payload);
 
-    addToken(token);
-
-    return token;
+    return new HttpException(token, 202);
   }
 }
+
+/* addToken: CallbackType */
+
+/*  */ /* (token: string) => {
+  req.session.token = token;
+  response.status(200).cookie('token', token);
+} */

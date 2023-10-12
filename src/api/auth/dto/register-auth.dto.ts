@@ -3,5 +3,5 @@ import { IsNotEmpty } from 'class-validator';
 
 export class RegisterAuthDto extends LoginAuthDto {
   @IsNotEmpty()
-  username: 'string';
+  username: string;
 }
