@@ -6,12 +6,15 @@ import * as cookieParser from 'cookie-parser';
 import swaggerDocsConfig from './config/swagger-docs-config';
 import mongoSessionConfig from './config/mongo-session-config';
 import hbsEngineConfig from './config/hbs-engine-config';
+import * as express from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
   /* Auto-Validation */
   app.useGlobalPipes(new ValidationPipe());
+
+  app.use(express.json());
 
   /* Configuracion de MongoStore */
   mongoSessionConfig(app);

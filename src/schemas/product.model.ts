@@ -25,6 +25,8 @@ export class Products {
   status: boolean;
   @Prop({ required: true, trim: true })
   category: string;
+  @Prop({ required: false, trim: true })
+  thumbnails: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Products).plugin(mongoosePaginate);

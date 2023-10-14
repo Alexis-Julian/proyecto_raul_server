@@ -30,7 +30,7 @@ describe('AuthController E2E Test', () => {
   });
 
   describe('\nTest Login', () => {
-    it('should return a 200 when valid email and password are provided', async () => {
+    it('should return a 202 when valid email and password are provided', async () => {
       const MockAuthUser: LoginAuthDto = { email: 'probando10@hotmail.es', password: 'probando10' };
 
       const response = await request(app.getHttpServer()).post('/api/auth/login').send(MockAuthUser);

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export const getBasePath = __dirname;
+export const getBasePath = process.cwd();
 
 export function verifyToken(token: string): boolean {
   try {

@@ -23,4 +23,8 @@ export class UpdateProductDto {
   @IsOptional()
   @IsString()
   category?: string;
+
+  @IsOptional()
+  @IsString()
+  thumbnail?: string;
 }
