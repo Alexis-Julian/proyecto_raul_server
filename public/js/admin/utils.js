@@ -1,13 +1,20 @@
-class Products {
-  constructor() {
-    this.url = 'http://localhost:3000/api/products';
-  }
+import { dashboard_products } from './index.js';
+import { ProductsManager } from '../api/products.js';
+import { viewProducts, viewLoading } from './view.js';
 
-  async getProducts() {
-    const response = await fetch(this.url);
-    const data = await response.json();
-    return data;
-  }
-}
+export const ShowProducts = async () => {
+  const loading = document.createElement('div');
 
-export const ProductsManager = new Products();
+  loading.innerHTML = viewLoading();
+  dashboard_products.append(loading);
+
+  //await new Promise((resolve) => setTimeout(resolve, 12000));
+
+  let data = await ProductsManager.getProducts();
+
+  loading.remove();
+
+  data.docs.map((product) => {
+    dashboard_products.innerHTML += viewProducts(product);
+  });
+};

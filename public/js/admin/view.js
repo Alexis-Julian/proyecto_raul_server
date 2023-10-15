@@ -1,5 +1,6 @@
 export const viewProducts = (product) => {
-  const { _id, category, code, description, price, status, stock, title, thumbnails } = product;
+  const { _id, category, code, description, price, status, stock, title, thumbnails, author } = product;
+  const { username, email, img } = author[0].owner;
 
   const image = new Image();
 
@@ -15,14 +16,15 @@ export const viewProducts = (product) => {
   };
 
   return `
-    <div href="#"  class="w-1/3  cursor-pointer flex flex-col items-center  border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <div href="#"  class="w-1/3 relative  cursor-pointer flex flex-col items-center  border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
         <div class="img_product flex items-center justify-center">
             <div class="loader_old" id="${code}">..</div>
         </div>
         <div class="flip-box relative" >
-            <div class="absolute h-full w-full  bg-none top-0"></div>
+        <div class="absolute h-full w-full  bg-none top-0"></div>
             <div class="flip-box-inner ">
-                <div class="flip-box-front  flex flex-col justify-between p-4 leading-normal">
+                <div class="flip-box-front   flex flex-col justify-between p-4 leading-normal">
+                    <div class="absolute flex top-0 left-0 text-sm text-black pl-2"><h5 class="font-extrabold">Category:</h5>&nbsp; ${category}</div>
                     <h5 class=" mb-2 text-2xl font-bold tracking-tight text-black dark:text-white">${title}</h5>
                     <div class="grid grid-rows-2 grid-cols-2  h-full">
                         <div class="flex flex-col justify-center">
@@ -44,17 +46,19 @@ export const viewProducts = (product) => {
                     </div>
                     <p class="text-black mb-3 font-normal  dark:text-gray-400">${description}</p>
                 </div>
-                <div class="flip-box-back   grid grid-cols-1 grid-rows-3 h-full">
-                    <div class="flex justify-start pl-2 pt-2 flex-col">
-                        <p class="text-primary-color">Producto id</p>
-                        <p class="pl-5">${_id}</p> 
+                <div class="flip-box-back h-full flex flex-col">
+                    <div class="">
+                        <p class="text-primary-color font-extrabold">Created by: ${username ? username : 'Undefined'} </p>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <div class="rounded-full bg-primary-color  h-full w-full  shadow-inner shadow-orange-400 p-3  ">
-                            <img  src="/image/profile.png"  />
+                    <div class="flex-grow">
+                        <div class="flex items-center h-full p-3">
+                            <div class="info_user">
+                                <img src=${img ? img : '/image/profile.png'} class="z-20 rounded-full"  height="150" width="150"/>
+                                <div class="blur_img -z-40"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex items-end justify-center gap-5">
+                    <div class="flex items-end justify-center gap-5 h-1/5">
                         <button type="button" class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">Comunicarse</button>
                         <button type="button" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Eliminar</button>
                     </div>

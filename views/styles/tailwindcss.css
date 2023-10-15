@@ -214,3 +214,22 @@
       -1.8em -1.8em 0 0em #ffffff;
   }
 }
+
+.card_user {
+}
+.info_user {
+  height: 120px;
+  width: 120px;
+  position: relative;
+  border: outset white 3px;
+  border-radius: 100%;
+}
+.blur_img {
+  position: absolute;
+  background-color: var(--primary-color);
+  filter: blur(5px);
+  top: 0;
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+}

@@ -59,17 +59,12 @@ export class ProductDao {
     }
   }
 
-  async findAll() {
+  async findAll(page: number, limit: number) {
     try {
-      const productFinds = await this.productModel.paginate({}, options);
-
+      const productFinds = await this.productModel.paginate({}, { page: page, limit: limit, populate: 'author.owner' });
       return productFinds;
     } catch (err) {
-      //console.log('Error:' + err.message);
+      console.log('Error:' + err.message);
     }
   }
 }
-const options = {
-  page: 1,
-  limit: 10,
-};

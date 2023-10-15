@@ -2242,6 +2242,27 @@ input[disabled] {
   }
 }
 
+.card_user {
+}
+
+.info_user {
+  height: 120px;
+  width: 120px;
+  position: relative;
+  border: outset white 3px;
+  border-radius: 100%;
+}
+
+.blur_img {
+  position: absolute;
+  background-color: var(--primary-color);
+  filter: blur(5px);
+  top: 0;
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+}
+
 .placeholder\:text-gray-400::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));

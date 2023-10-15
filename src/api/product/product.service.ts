@@ -19,8 +19,8 @@ export class ProductService {
     return productCreate;
   }
 
-  async findAll(): Promise<ProductPaginate | any> {
-    const productFind = await this.ProductDao.findAll();
+  async findAll(page: number, limit: number): Promise<ProductPaginate | any> {
+    const productFind = await this.ProductDao.findAll(page, limit);
 
     if (!productFind) throw new HttpException('NO_EXISTING_PRODUCT', HttpStatus.NOT_FOUND);
 
