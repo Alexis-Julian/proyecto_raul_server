@@ -1,27 +1,23 @@
 export const viewProducts = (product) => {
   const { _id, category, code, description, price, status, stock, title, thumbnails } = product;
 
-  const work = new Worker('../../js/admin/myWorker.js');
   const image = new Image();
 
   image.src = thumbnails;
+
   image.onload = function () {
-    let loading = document.querySelector('.loader_old');
-    let container_img = document.querySelector('.img_product');
-    container_img.appendChild(image);
-    console.log(loading);
-    console.log(container_img);
-    console.log(image);
-    /* let div = document.createElement('div');
-    div.classList.add(...classList);
-    div.style. */
-    // <div class="bg-cover bg-center	h-full w-full" style="background-image: url(${thumbnails});"></div>
+    const classNameImage = ['bg-cover', 'bg-center', 'h-full', 'w-full'];
+    const div = document.getElementById(code);
+    div.innerHTML = '';
+    div.classList.remove('loader_old');
+    div.classList.add(...classNameImage);
+    div.style.backgroundImage = 'url(' + thumbnails + ')';
   };
 
   return `
     <div href="#"  class="w-1/3  cursor-pointer flex flex-col items-center  border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-        <div class="img_product">
-            <span class="loader_old"></span>
+        <div class="img_product flex items-center justify-center">
+            <div class="loader_old" id="${code}">..</div>
         </div>
         <div class="flip-box relative" >
             <div class="absolute h-full w-full  bg-none top-0"></div>
