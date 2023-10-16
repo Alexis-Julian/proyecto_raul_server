@@ -1,8 +1,9 @@
-import { dashboard_products } from './index.js';
+import { dashboard_products, navBar } from './index.js';
 import { ProductsManager } from '../api/products.js';
 import { viewProducts, viewLoading } from './view.js';
 
 export const ShowProducts = async () => {
+  dashboard_products.innerHTML = '';
   const loading = document.createElement('div');
 
   loading.innerHTML = viewLoading();
@@ -18,3 +19,9 @@ export const ShowProducts = async () => {
     dashboard_products.innerHTML += viewProducts(product);
   });
 };
+
+export const ShowUsers = async () => {
+  dashboard_products.innerHTML = '';
+};
+
+export const HiddenNavBar = () => {};

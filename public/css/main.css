@@ -1373,6 +1373,10 @@ input[disabled] {
   height: 2.5rem;
 }
 
+.h-14 {
+  height: 3.5rem;
+}
+
 .h-4 {
   height: 1rem;
 }
@@ -1407,6 +1411,10 @@ input[disabled] {
 
 .w-1\/6 {
   width: 16.666667%;
+}
+
+.w-14 {
+  width: 3.5rem;
 }
 
 .w-4 {
@@ -1581,6 +1589,10 @@ input[disabled] {
   border-radius: 0.25rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -1655,6 +1667,10 @@ input[disabled] {
 
 .border-quaternary-color {
   border-color: var(--quaternary-color);
+}
+
+.border-l-inherit {
+  border-left-color: inherit;
 }
 
 .bg-\[\#24292F\] {
@@ -1842,6 +1858,10 @@ input[disabled] {
 
 .pb-5 {
   padding-bottom: 1.25rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
 }
 
 .pt-2 {
@@ -2246,8 +2266,8 @@ input[disabled] {
 }
 
 .info_user {
-  height: 120px;
-  width: 120px;
+  height: 7.5rem;
+  width: 7.5rem;
   position: relative;
   border: outset white 3px;
   border-radius: 100%;
@@ -2258,9 +2278,32 @@ input[disabled] {
   background-color: var(--primary-color);
   filter: blur(5px);
   top: 0;
-  height: 120px;
-  width: 120px;
+  height: 7.5rem;
+  width: 7.5rem;
   border-radius: 100%;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+@keyframes increment_decrease {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.increment_animation {
+  animation: increment_decrease 1.3s infinite ease;
 }
 
 .placeholder\:text-gray-400::-moz-placeholder {

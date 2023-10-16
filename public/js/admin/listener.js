@@ -1,9 +1,11 @@
 /* Elementos HTML */
-import { btn_user } from './index.js';
+import { btn_products, btn_user, btn_navbar } from './index.js';
 
 /* Funciones */
-import { ShowProducts } from './utils.js'; //Muesta todos los productos en pantalla
+import { ShowProducts, ShowUsers, HiddenNavBar } from './utils.js'; //Muesta todos los productos en pantalla
 
 export default () => {
-  btn_user.addEventListener('click', ShowProducts);
+  btn_navbar.addEventListener('click', HiddenNavBar);
+  btn_products.addEventListener('click', ShowProducts);
+  btn_user.addEventListener('click', ShowUsers);
 };

@@ -1,6 +1,6 @@
 export const viewProducts = (product) => {
   const { _id, category, code, description, price, status, stock, title, thumbnails, author } = product;
-  const { username, email, img } = author[0].owner;
+  const { username, email, img, role } = author[0].owner;
 
   const image = new Image();
 
@@ -47,14 +47,26 @@ export const viewProducts = (product) => {
                     <p class="text-black mb-3 font-normal  dark:text-gray-400">${description}</p>
                 </div>
                 <div class="flip-box-back h-full flex flex-col">
-                    <div class="">
+                    <div class="pt-3">
                         <p class="text-primary-color font-extrabold">Created by: ${username ? username : 'Undefined'} </p>
                     </div>
                     <div class="flex-grow">
-                        <div class="flex items-center h-full p-3">
-                            <div class="info_user">
-                                <img src=${img ? img : '/image/profile.png'} class="z-20 rounded-full"  height="150" width="150"/>
-                                <div class="blur_img -z-40"></div>
+                        <div class="grid items-center justify-center h-full w-full   ">
+                            <div class="mx-auto">
+                                <div class="info_user">
+                                    <img src=${img ? img : '/image/profile.png'} class="z-20 rounded-full"  height="150" width="150"/>
+                                    <div class="blur_img -z-40"></div>
+                                </div>
+                            </div>
+                            <div class="grid  grid-rows-2 gap-3 p-3 ">
+                                <span class="flex flex-col">
+                                    <p class="underline tracking-wider font-semibold">Email</p>
+                                    <p class="text-sm font-semibold text-secondary-color">${email}</p>
+                                </span>
+                                <span class="flex flex-col">
+                                    <p class="underline tracking-wider font-semibold">Role</p>
+                                    <p class="text-sm font-semibold text-secondary-color">${role}</p>
+                                </span>
                             </div>
                         </div>
                     </div>
