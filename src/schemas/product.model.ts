@@ -1,6 +1,6 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Types } from 'mongoose';
-import { User } from './user.model';
+import { HydratedDocument } from 'mongoose';
+import { Users } from './user.model';
 import mongoose from 'mongoose';
 import * as mongoosePaginate from 'mongoose-paginate-v2';
 
@@ -29,7 +29,7 @@ export class Products {
   @Prop({ required: false, trim: true })
   thumbnails: string;
   @Prop({ type: [{ owner: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' } }] })
-  author: { owner: User }[];
+  author: { owner: Users }[];
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Products).plugin(mongoosePaginate);

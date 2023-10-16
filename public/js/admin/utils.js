@@ -1,5 +1,6 @@
 import { table } from './index.js';
 import { ProductsManager } from '../api/products.js';
+import { userManager } from '../api/users.js';
 import { viewProducts, viewLoading, viewTableHeaders, viewTableUser } from './view.js';
 
 const create_dashboard_Product = () => {
@@ -18,10 +19,12 @@ const create_dashboard_Users = () => {
   return dashboard_users;
 };
 
-const create_row_Users = () => {
+const create_row_Users = (user) => {
   const info_user = document.createElement('tr');
+
   info_user.classList.add('row_user');
-  info_user.innerHTML = viewTableUser();
+  info_user.innerHTML = viewTableUser(user);
+
   return info_user;
 };
 
@@ -52,9 +55,11 @@ export const ShowUsers = async () => {
 
   const container_user = document.getElementById('container_user'); // Accede a la etiqueta donde va colocar todos los usuarios
 
-  for (let index = 0; index < 15; index++) {
-    container_user.append(create_row_Users());
-  }
+  const users = await userManager.getUsers(8, 15);
+
+  users.docs.map((user) => {
+    container_user.append(create_row_Users(user));
+  });
 };
 
 export const HiddenNavBar = () => {};
@@ -63,8 +68,6 @@ export const clearTable = () => {
   const classList = ['absolute', 'bg-primary-color', 'h-full', 'w-full', 'top-0', 'blur-z-40', 'opacity-20'];
   const div = document.createElement('div');
   div.classList.add(...classList);
-
   table.innerHTML = '';
-
   table.append(div);
 };

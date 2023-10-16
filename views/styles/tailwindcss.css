@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: 'Poppins', sans-serif;
-}
-
 :root {
   --primary-color: rgb(221, 221, 221);
   --secondary-color: rgb(34, 40, 49);

@@ -1,31 +1,15 @@
-import { Get, Post, Delete, Patch, Body, Param } from '@nestjs/common';
+import { Get, Delete, Patch, Body, Query } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { UserService } from './user.service';
-import { AuthLoginUserDto } from './dto/auth-login_user.dto';
 
-interface Params {
-  id: string;
-}
-
-@Controller('api/user')
+@Controller('api/users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  /* @Post('login')
-  loginUser(@Body() payload: AuthLoginUserDto) {
-    return this.userService.authLogin(payload);
+  @Get()
+  findAll(@Query('page') page: number = 1, @Query('limit') limit: number = 15) {
+    return this.userService.findAll(page, limit);
   }
-
-  @Post('register')
-  createUser(@Body() CreateUserDto: any) {
-    console.log(CreateUserDto);
-    return 'Create User';
-  }
-
-  @Get(':id')
-  searchUser(@Param() { id }: Params) {
-    return this.userService.findOne(id);
-  } */
 
   @Patch(':id')
   updateUser(@Body() UserDto: any) {

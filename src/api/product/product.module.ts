@@ -16,6 +16,7 @@ import productsMiddleware from '../../middlewares/productMiddlewares';
   ],
   providers: [ProductService, ProductDao],
   controllers: [ProductController],
+  exports: [ProductService],
 })
 export class ProductModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

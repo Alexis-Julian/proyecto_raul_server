@@ -1,15 +1,15 @@
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from 'src/schemas/user.model';
+import { Users } from 'src/schemas/user.model';
 import { Injectable } from '@nestjs/common';
 import { RegisterAuthDto } from 'src/api/auth/dto/register-auth.dto';
 import { PaginateModel } from 'mongoose';
 @Injectable()
 export class UserDao {
-  constructor(@InjectModel('User') private userModel: PaginateModel<User>) {}
+  constructor(@InjectModel('Users') private userModel: PaginateModel<Users>) {}
 
   async findAll(page: number, limit: number) {
     try {
-      const users = await this.userModel.paginate({ page, limit });
+      const users = await this.userModel.paginate({}, { page: page, limit: limit });
       return users;
     } catch (err) {
       console.log('Error:' + err.message);
@@ -19,7 +19,7 @@ export class UserDao {
 
   async findById(id: any) {
     try {
-      const userFind: User = await this.userModel.findById(id);
+      const userFind: Users = await this.userModel.findById(id);
       return userFind;
     } catch (err) {
       console.log('Error:' + err.message);
@@ -29,7 +29,7 @@ export class UserDao {
 
   async findOne(query?: any) {
     try {
-      const userFind: User = await this.userModel.findOne(query && query);
+      const userFind: Users = await this.userModel.findOne(query && query);
       return userFind;
     } catch (err) {
       console.log('Error:' + err.message);
@@ -39,7 +39,7 @@ export class UserDao {
 
   async findByIdAndDelete(id: string) {
     try {
-      const userDelete: User = await this.userModel.findByIdAndDelete(id);
+      const userDelete: Users = await this.userModel.findByIdAndDelete(id);
 
       return userDelete;
     } catch (err) {
@@ -50,7 +50,7 @@ export class UserDao {
 
   async findByIdAndUpdate(id: string) {
     try {
-      const userUpdate: User = await this.userModel.findByIdAndUpdate(id);
+      const userUpdate: Users = await this.userModel.findByIdAndUpdate(id);
 
       return userUpdate;
     } catch (err) {
@@ -62,7 +62,7 @@ export class UserDao {
 
   async create(userObject: RegisterAuthDto) {
     try {
-      const userRegister: User = new this.userModel(userObject);
+      const userRegister: Users = new this.userModel(userObject);
 
       return userRegister;
     } catch (err) {

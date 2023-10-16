@@ -8,11 +8,13 @@ import { SessionModule } from './api/session/session.module';
 import { UserModule } from './api/user/user.module';
 import { AuthModule } from './api/auth/auth.module';
 import { ProductModule } from './api/product/product.module';
+import { ProductsModule as viewProductsModule } from './views/products/products.module';
+import { ChatModule as viewChatModule } from './views/chat/chat.module';
 import { AuthViewModule } from './views/auth-view/auth-view.module';
 import { WorkersModule } from './api/workers/workers.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGO), ProductModule, SessionModule, UserModule, AuthModule, ProductModule, AuthViewModule, WorkersModule],
+  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGO), ProductModule, SessionModule, UserModule, AuthModule, ProductModule, viewProductsModule, AuthViewModule, viewChatModule, WorkersModule],
   controllers: [],
   providers: [],
 })

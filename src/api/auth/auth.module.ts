@@ -11,7 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: 'Users', schema: UserSchema }]),
     JwtModule.register({
       global: true,
       secret: process.env.JwtSecret,

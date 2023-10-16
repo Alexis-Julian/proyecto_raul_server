@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import defaultTheme from 'tailwindcss/defaultTheme';
+// import defaultTheme from 'tailwindcss/defaultTheme';
 import withMT from '@material-tailwind/html/utils/withMT';
 
 export default withMT({
@@ -32,7 +32,8 @@ export default withMT({
     },
     body: ['Poppins', 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
     fontFamily: {
-      sans: ['sans-serif', 'Lato', 'Quicksand', ...defaultTheme.fontFamily.sans],
+      /* sans: ['sans-serif', 'Lato', 'Quicksand', ...defaultTheme.fontFamily.sans, 'Poppins'], */
+      sans: ['Poppins', 'sans-serif'],
     },
   },
   plugins: [require('@tailwindcss/forms'), require('flowbite/plugin')],

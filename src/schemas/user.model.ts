@@ -9,13 +9,13 @@ enum Role {
   premium = 'premium',
 }
 
-export type UserDocument = HydratedDocument<User>;
+export type UserDocument = HydratedDocument<Users>;
 
 @Schema({
   timestamps: true,
   _id: true,
 })
-export class User {
+export class Users {
   id?: string;
 
   @Prop({ required: true, trim: true })
@@ -55,4 +55,4 @@ export class User {
   cart: Types.ObjectId;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User).plugin(mongoosePaginate);
+export const UserSchema = SchemaFactory.createForClass(Users).plugin(mongoosePaginate);

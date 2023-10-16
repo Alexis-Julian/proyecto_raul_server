@@ -1,28 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-//import { UserDao } from '../auth/user.dao';
-import { AuthLoginUserDto } from './dto/auth-login_user.dto';
+import { UserDao } from 'src/dao/user.dao';
 
 @Injectable()
 export class UserService {
-  constructor(/* private readonly userDao: UserDao */) {}
+  constructor(private readonly userDao: UserDao) {}
 
-  register(user: CreateUserDto) {
-    console.log(user);
-    return 'New User';
+  async findAll(page: number, limit: number) {
+    return this.userDao.findAll(page, limit);
   }
 
-  async authLogin(payload: AuthLoginUserDto) {
-    //const user = await this.userDao.findOne({ email: payload.email });
-
-    return 'user';
-  }
-
-  async findAll() {
-    return 'SDS';
-  }
-
-  async findOne(id: string) {
+  async findOne() {
     return; //await this.userDao.findById(id);
   }
 
