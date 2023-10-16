@@ -1,12 +1,21 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from 'src/schemas/user.model';
-import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { RegisterAuthDto } from 'src/api/auth/dto/register-auth.dto';
-
+import { PaginateModel } from 'mongoose';
 @Injectable()
 export class UserDao {
-  constructor(@InjectModel('User') private userModel: Model<User>) {}
+  constructor(@InjectModel('User') private userModel: PaginateModel<User>) {}
+
+  async findAll(page: number, limit: number) {
+    try {
+      const users = await this.userModel.paginate({ page, limit });
+      return users;
+    } catch (err) {
+      console.log('Error:' + err.message);
+      return null;
+    }
+  }
 
   async findById(id: any) {
     try {

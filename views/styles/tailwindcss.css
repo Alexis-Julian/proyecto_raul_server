@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 :root {
   --primary-color: rgb(221, 221, 221);
   --secondary-color: rgb(34, 40, 49);
@@ -252,4 +256,13 @@
 
 .increment_animation {
   animation: increment_decrease 1.3s infinite ease;
+}
+
+.header_user {
+  background-color: var(--tertiary-color);
+}
+
+.row_user {
+  background-color: var(--secondary-color);
+  border-bottom: 0.5px dotted var(--quaternary-color);
 }

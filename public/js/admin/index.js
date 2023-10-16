@@ -1,6 +1,6 @@
 import Listener from './listener.js';
 
-export const dashboard_products = document.getElementById('dashboard_user'); //Dashboard User
+export const table = document.getElementById('table'); //Dashboard User
 export const navBar = document.getElementById('navbar'); //NavBar
 
 export const btn_products = document.getElementById('btn_products'); // Boton para ver los Productos

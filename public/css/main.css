@@ -44,7 +44,7 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: sans-serif, Lato, Quicksand, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: sans-serif, Lato, Quicksand, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif, Lato, Quicksand, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -129,7 +129,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -1169,33 +1169,33 @@ html {
   width: 100%;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 540px) {
   .container {
-    max-width: 640px;
+    max-width: 540px;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .container {
-    max-width: 768px;
+    max-width: 720px;
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 960px) {
   .container {
-    max-width: 1024px;
+    max-width: 960px;
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1140px) {
   .container {
-    max-width: 1280px;
+    max-width: 1140px;
   }
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1320px) {
   .container {
-    max-width: 1536px;
+    max-width: 1320px;
   }
 }
 
@@ -1511,10 +1511,6 @@ input[disabled] {
   resize: both;
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -1553,10 +1549,6 @@ input[disabled] {
 
 .justify-between {
   justify-content: space-between;
-}
-
-.gap-5 {
-  gap: 1.25rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -1759,10 +1751,6 @@ input[disabled] {
 
 .p-2\.5 {
   padding: 0.625rem;
-}
-
-.p-3 {
-  padding: 0.75rem;
 }
 
 .p-4 {
@@ -2071,6 +2059,10 @@ input[disabled] {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 :root {
   --primary-color: rgb(221, 221, 221);
   --secondary-color: rgb(34, 40, 49);
@@ -2304,6 +2296,15 @@ input[disabled] {
 
 .increment_animation {
   animation: increment_decrease 1.3s infinite ease;
+}
+
+.header_user {
+  background-color: var(--tertiary-color);
+}
+
+.row_user {
+  background-color: var(--secondary-color);
+  border-bottom: 0.5px dotted var(--quaternary-color);
 }
 
 .placeholder\:text-gray-400::-moz-placeholder {
@@ -2660,7 +2661,7 @@ input[disabled] {
   --tw-ring-color: rgb(30 64 175 / var(--tw-ring-opacity));
 }
 
-@media (min-width: 640px) {
+@media (min-width: 540px) {
   .sm\:mx-auto {
     margin-left: auto;
     margin-right: auto;
@@ -2692,7 +2693,7 @@ input[disabled] {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .md\:mt-0 {
     margin-top: 0px;
   }
@@ -2713,7 +2714,7 @@ input[disabled] {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 960px) {
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -2725,7 +2726,7 @@ input[disabled] {
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1140px) {
   .xl\:p-0 {
     padding: 0px;
   }

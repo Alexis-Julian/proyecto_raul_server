@@ -1,12 +1,15 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-
+import { HydratedDocument } from 'mongoose';
 import mongoose, { Types } from 'mongoose';
+import * as mongoosePaginate from 'mongoose-paginate-v2';
 
 enum Role {
   admin = 'admin',
   usuario = 'usuario',
   premium = 'premium',
 }
+
+export type UserDocument = HydratedDocument<User>;
 
 @Schema({
   timestamps: true,
@@ -52,4 +55,4 @@ export class User {
   cart: Types.ObjectId;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const UserSchema = SchemaFactory.createForClass(User).plugin(mongoosePaginate);

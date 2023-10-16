@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme';
-export default {
+import withMT from '@material-tailwind/html/utils/withMT';
+
+export default withMT({
   content: ['./views/*.{hbs,html,js,handlebars}', './views/partials/*.{html,js,handlebars,hbs}', './node_modules/flowbite/**/*.js'],
   theme: {
     extend: {
@@ -34,4 +36,4 @@ export default {
     },
   },
   plugins: [require('@tailwindcss/forms'), require('flowbite/plugin')],
-};
+});
