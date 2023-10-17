@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from '../../schemas/user.model';
 import { JwtModule } from '@nestjs/jwt';
 import { UserDao } from '../../dao/user.dao';
+import { JwtStratergy } from './jwt.stratergy';
 
 import { ConfigModule } from '@nestjs/config';
 
@@ -18,7 +19,7 @@ import { ConfigModule } from '@nestjs/config';
       signOptions: { expiresIn: '60h' },
     }),
   ],
-  providers: [AuthService, UserDao],
+  providers: [AuthService, UserDao, JwtStratergy],
   controllers: [AuthController],
 })
 export class AuthModule {}

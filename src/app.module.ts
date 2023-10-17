@@ -1,8 +1,11 @@
 /* Funcionalidades */
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, NestModule, RequestMethod } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
+/* MiddleWares */
+import productsMiddleware from './middlewares/productMiddlewares';
+import authMiddleware from './middlewares/authMiddleware';
 /* App.Modulos */
 import { SessionModule } from './api/session/session.module';
 import { UserModule } from './api/user/user.module';
@@ -18,4 +21,9 @@ import { WorkersModule } from './api/workers/workers.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(productsMiddleware).forRoutes({ path: 'view/products', method: RequestMethod.GET });
+    consumer.apply(authMiddleware).forRoutes({ path: 'view/auth/*', method: RequestMethod.GET });
+  }
+}

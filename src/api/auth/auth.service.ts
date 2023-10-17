@@ -1,12 +1,11 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
+import { Response } from 'express';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { UserDao } from '../../dao/user.dao';
 import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-
-type CallbackType = (token: string) => any;
 
 @Injectable()
 export class AuthService {
@@ -15,7 +14,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async register(userObjectRegister: RegisterAuthDto, addToken: CallbackType) {
+  async register(userObjectRegister: RegisterAuthDto, callback) {
     const { email, password } = userObjectRegister;
 
     const findEmail = await this.UserDao.findOne({ email });
@@ -35,7 +34,7 @@ export class AuthService {
     return new HttpException(user, 201);
   }
 
-  async login(userObjectLogin: LoginAuthDto) {
+  async login(userObjectLogin: LoginAuthDto, res: Response) {
     const { email, password } = userObjectLogin;
 
     const findUser = await this.UserDao.findOne({ email });
@@ -48,6 +47,8 @@ export class AuthService {
     const payload = { id: findUser.id, email: findUser.email, username: findUser.username, img: findUser.img || 'no image' };
 
     const token = await this.jwtService.signAsync(payload);
+
+    res.cookie('token', token);
 
     return new HttpException(token, 202);
   }

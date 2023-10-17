@@ -18,8 +18,4 @@ import productsMiddleware from '../../middlewares/productMiddlewares';
   controllers: [ProductController],
   exports: [ProductService],
 })
-export class ProductModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(productsMiddleware).forRoutes({ path: '*', method: 5 });
-  }
-}
+export class ProductModule {}
