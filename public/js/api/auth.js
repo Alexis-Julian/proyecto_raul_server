@@ -11,6 +11,10 @@ class AuthManager {
 
     return await response.json();
   }
+  async AuthLogout() {
+    const response = await fetch(this.url + '/logout');
+    return await response.json();
+  }
 }
 
 export const ManagerAuth = new AuthManager();

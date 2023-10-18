@@ -1,10 +1,10 @@
-import { Controller, Render, Get } from '@nestjs/common';
+import { Controller, Render, Get, Req } from '@nestjs/common';
 
 @Controller('view/chat')
 export class ChatController {
   @Get()
   @Render('chat')
-  ViewChat() {
-    return { message: 'Hello world', layout: 'home' };
+  ViewChat(@Req() req: any) {
+    return { user: req.session.user, layout: 'home' };
   }
 }

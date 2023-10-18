@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { Response } from 'express';
@@ -14,7 +14,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async register(userObjectRegister: RegisterAuthDto, callback) {
+  async register(userObjectRegister: RegisterAuthDto, callback: any) {
     const { email, password } = userObjectRegister;
 
     const findEmail = await this.UserDao.findOne({ email });
@@ -34,7 +34,7 @@ export class AuthService {
     return new HttpException(user, 201);
   }
 
-  async login(userObjectLogin: LoginAuthDto, res: Response) {
+  async login(userObjectLogin: LoginAuthDto, callback) {
     const { email, password } = userObjectLogin;
 
     const findUser = await this.UserDao.findOne({ email });
@@ -48,15 +48,18 @@ export class AuthService {
 
     const token = await this.jwtService.signAsync(payload);
 
-    res.cookie('token', token);
+    callback(findUser, token);
 
     return new HttpException(token, 202);
   }
+
+  async logout(res: Response, req: any) {
+    if (req.session) {
+      req.session.destroy();
+      res.clearCookie('token');
+      return new HttpException('SESSION_DELETED', HttpStatus.ACCEPTED);
+    } else {
+      return new HttpException('SESSION_NOT_FOUND', HttpStatus.NOT_FOUND);
+    }
+  }
 }
-
-/* addToken: CallbackType */
-
-/*  */ /* (token: string) => {
-  req.session.token = token;
-  response.status(200).cookie('token', token);
-} */

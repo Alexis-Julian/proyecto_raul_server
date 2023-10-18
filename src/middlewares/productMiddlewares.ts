@@ -6,8 +6,7 @@ export default class productsMiddleware implements NestMiddleware {
     try {
       const { token } = req.cookies;
 
-      const payload = jwt.verify(token, process.env.JwtSecret);
-      req.session.user = payload;
+      jwt.verify(token, process.env.JwtSecret);
 
       return next();
     } catch (err) {
