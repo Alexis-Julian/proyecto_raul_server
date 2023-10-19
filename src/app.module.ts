@@ -15,9 +15,9 @@ import { ProductsModule as viewProductsModule } from './views/products/products.
 import { ChatModule as viewChatModule } from './views/chat/chat.module';
 import { AuthViewModule } from './views/auth-view/auth-view.module';
 import { WorkersModule } from './api/workers/workers.module';
-
+import { GatewayModule } from './gateway/gateway.module';
 @Module({
-  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGO), ProductModule, SessionModule, UserModule, AuthModule, ProductModule, viewProductsModule, AuthViewModule, viewChatModule, WorkersModule],
+  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGO), ProductModule, SessionModule, UserModule, AuthModule, ProductModule, viewProductsModule, AuthViewModule, viewChatModule, WorkersModule, GatewayModule],
   controllers: [],
   providers: [],
 })

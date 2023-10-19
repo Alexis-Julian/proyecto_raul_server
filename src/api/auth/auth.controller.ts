@@ -12,8 +12,8 @@ export class AuthController {
 
   @Post('register')
   userRegister(@Res({ passthrough: true }) response: any, @Req() req: any, @Body() userObject: RegisterAuthDto) {
-    return this.authService.register(userObject, (token: string) => {
-      req.session.token = token;
+    return this.authService.register(userObject, (user: Users, token: string) => {
+      req.session.user = user;
       response.cookie('token', token);
     });
   }

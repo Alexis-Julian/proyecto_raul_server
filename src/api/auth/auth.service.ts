@@ -6,6 +6,7 @@ import { Response } from 'express';
 import { UserDao } from '../../dao/user.dao';
 import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { Users } from 'src/schemas/user.model';
 
 @Injectable()
 export class AuthService {
@@ -23,15 +24,19 @@ export class AuthService {
 
     const encrypted = await hash(password, 10);
 
-    userObjectRegister = { ...userObjectRegister, password: encrypted };
-    /* Falta agregar el token,
-     validar que los campos se creen correctamente  */
-    //addToken('1');
-    const user = this.UserDao.create(userObjectRegister);
+    userObjectRegister = { ...userObjectRegister, password: encrypted, img: 'https://i.imgur.com/9zz7ubU.jpg', role: 'usuario' };
+
+    const user: Users = await this.UserDao.create(userObjectRegister);
 
     if (!user) return new HttpException('ERROR_CREATE_USER', 404);
 
-    return new HttpException(user, 201);
+    const payload = { id: user.id, email: user.email, username: user.username, img: user.img || 'no image' };
+
+    const token = await this.jwtService.signAsync(payload);
+
+    callback(user, token);
+
+    return new HttpException(token, 201);
   }
 
   async login(userObjectLogin: LoginAuthDto, callback) {
@@ -42,6 +47,7 @@ export class AuthService {
     if (!findUser) return new HttpException('USER_NOT_FOUND', 404);
 
     const checkPassword = await compare(password, findUser.password);
+
     if (!checkPassword) return new HttpException('PASSWORD_INCORRECT', 403);
 
     const payload = { id: findUser.id, email: findUser.email, username: findUser.username, img: findUser.img || 'no image' };

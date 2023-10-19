@@ -62,8 +62,7 @@ export class UserDao {
 
   async create(userObject: RegisterAuthDto) {
     try {
-      const userRegister: Users = new this.userModel(userObject);
-
+      const userRegister: Users = await new this.userModel(userObject).save();
       return userRegister;
     } catch (err) {
       console.log('Error:' + err.message);
