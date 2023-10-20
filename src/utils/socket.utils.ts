@@ -3,7 +3,7 @@ import { getCookiesFromSocket } from 'src/utils/cookies-utils';
 import { parsingToken } from 'src/utils/jwt-utils';
 
 interface UserActive extends Users {
-  chat_active: string | undefined;
+  chat_friend: string | undefined;
 }
 
 export function extractUserConnecting(socket): UserActive | null {

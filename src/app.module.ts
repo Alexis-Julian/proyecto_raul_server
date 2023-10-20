@@ -4,7 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
 /* MiddleWares */
-import productsMiddleware from './middlewares/productMiddlewares';
+import verifyAuth from './middlewares/productMiddlewares';
 import authMiddleware from './middlewares/authMiddleware';
 /* App.Modulos */
 import { SessionModule } from './api/session/session.module';
@@ -16,14 +16,17 @@ import { ChatModule as viewChatModule } from './views/chat/chat.module';
 import { AuthViewModule } from './views/auth-view/auth-view.module';
 import { WorkersModule } from './api/workers/workers.module';
 import { GatewayModule } from './gateway/gateway.module';
+import { FriendsModule } from './api/friends/friends.module';
+
 @Module({
-  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGO), ProductModule, SessionModule, UserModule, AuthModule, ProductModule, viewProductsModule, AuthViewModule, viewChatModule, WorkersModule, GatewayModule],
+  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGO), ProductModule, SessionModule, UserModule, AuthModule, ProductModule, viewProductsModule, AuthViewModule, viewChatModule, WorkersModule, GatewayModule, FriendsModule],
   controllers: [],
   providers: [],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(productsMiddleware).forRoutes({ path: 'view/products', method: RequestMethod.GET });
+    consumer.apply(verifyAuth).forRoutes({ path: 'view/products', method: RequestMethod.GET });
     consumer.apply(authMiddleware).forRoutes({ path: 'view/auth/*', method: RequestMethod.GET });
+    consumer.apply(verifyAuth).forRoutes({ path: 'api/friends', method: RequestMethod.ALL });
   }
 }

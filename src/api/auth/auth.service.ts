@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { Response } from 'express';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 import { UserDao } from '../../dao/user.dao';
 import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -11,14 +11,14 @@ import { Users } from 'src/schemas/user.model';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly UserDao: UserDao,
+    private readonly userDao: UserDao,
     private jwtService: JwtService,
   ) {}
 
   async register(userObjectRegister: RegisterAuthDto, callback: any) {
     const { email, password } = userObjectRegister;
 
-    const findEmail = await this.UserDao.findOne({ email });
+    const findEmail = await this.userDao.findOne({ email });
 
     if (findEmail) return new HttpException('USER_ALREADY_CREATED', 404);
 
@@ -26,7 +26,7 @@ export class AuthService {
 
     userObjectRegister = { ...userObjectRegister, password: encrypted, img: 'https://i.imgur.com/9zz7ubU.jpg', role: 'usuario' };
 
-    const user: Users = await this.UserDao.create(userObjectRegister);
+    const user: Users = await this.userDao.create(userObjectRegister);
 
     if (!user) return new HttpException('ERROR_CREATE_USER', 404);
 
@@ -42,7 +42,7 @@ export class AuthService {
   async login(userObjectLogin: LoginAuthDto, callback) {
     const { email, password } = userObjectLogin;
 
-    const findUser = await this.UserDao.findOne({ email });
+    const findUser = await this.userDao.findOne({ email });
 
     if (!findUser) return new HttpException('USER_NOT_FOUND', 404);
 

@@ -1,7 +1,7 @@
 import { NestMiddleware } from '@nestjs/common';
 import { Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
-export default class productsMiddleware implements NestMiddleware {
+export default class verifyAuth implements NestMiddleware {
   use(req: any, res: Response, next: NextFunction) {
     try {
       const { token } = req.cookies;
@@ -10,7 +10,7 @@ export default class productsMiddleware implements NestMiddleware {
 
       return next();
     } catch (err) {
-      res.redirect('auth/login');
+      res.redirect('/view/auth/login');
     }
   }
 }

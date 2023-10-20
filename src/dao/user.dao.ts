@@ -7,9 +7,9 @@ import { PaginateModel } from 'mongoose';
 export class UserDao {
   constructor(@InjectModel('Users') private userModel: PaginateModel<Users>) {}
 
-  async findAll(page: number, limit: number) {
+  async findAll(page: number, limit: number, query?) {
     try {
-      const users = await this.userModel.paginate({}, { page: page, limit: limit });
+      const users = await this.userModel.paginate(query && query, { page: page, limit: limit });
       return users;
     } catch (err) {
       console.log('Error:' + err.message);

@@ -6,7 +6,7 @@ import { Users } from 'src/schemas/user.model';
 import { extractUserConnecting } from 'src/utils/socket.utils';
 
 interface UserActive extends Users {
-  chat_active: string | undefined;
+  chat_friend: string | undefined;
 }
 let UsersActive: Array<UserActive> = [];
 @WebSocketGateway()
@@ -22,12 +22,12 @@ export class MyGateway implements OnModuleInit {
 
       //Mueve al usuario a otro chat
       socket.on('moveChat', ({ idchat }) => {
-        user.chat_active = idchat;
+        user.chat_friend = idchat;
       });
 
       //Envio de mensajes
       socket.on('sendMessage', (body) => {
-        console.log(body);
+        socket.emit(user.chat_friend + ':message', 'Hola!');
       });
 
       //Deconecta al usuario
