@@ -48,9 +48,9 @@ export class UserDao {
     }
   }
 
-  async findByIdAndUpdate(id: string) {
+  async findByIdAndUpdate(id: string, query?) {
     try {
-      const userUpdate: Users = await this.userModel.findByIdAndUpdate(id);
+      const userUpdate: Users = await this.userModel.findByIdAndUpdate(id, query && query);
 
       return userUpdate;
     } catch (err) {

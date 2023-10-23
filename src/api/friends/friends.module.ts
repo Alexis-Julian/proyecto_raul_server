@@ -5,9 +5,11 @@ import { UserDao } from 'src/dao/user.dao';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/schemas/user.model';
+import { FriendsUtils } from './friends-utils.service';
+
 @Module({
   imports: [ConfigModule.forRoot(), MongooseModule.forFeature([{ name: 'Users', schema: UserSchema }])],
   controllers: [FriendsController],
-  providers: [FriendsService, UserDao],
+  providers: [FriendsService, FriendsUtils, UserDao],
 })
 export class FriendsModule {}

@@ -13,13 +13,28 @@ import { AuthModule } from './api/auth/auth.module';
 import { ProductModule } from './api/product/product.module';
 import { ProductsModule as viewProductsModule } from './views/products/products.module';
 import { ChatModule as viewChatModule } from './views/chat/chat.module';
+import { FriendsModule as viewFriendModule } from './views/friends/friends.module';
 import { AuthViewModule } from './views/auth-view/auth-view.module';
 import { WorkersModule } from './api/workers/workers.module';
 import { GatewayModule } from './gateway/gateway.module';
 import { FriendsModule } from './api/friends/friends.module';
-
 @Module({
-  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGO), ProductModule, SessionModule, UserModule, AuthModule, ProductModule, viewProductsModule, AuthViewModule, viewChatModule, WorkersModule, GatewayModule, FriendsModule],
+  imports: [
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGO),
+    ProductModule,
+    SessionModule,
+    UserModule,
+    AuthModule,
+    ProductModule,
+    AuthViewModule,
+    WorkersModule,
+    GatewayModule,
+    FriendsModule,
+    viewChatModule,
+    viewProductsModule,
+    viewFriendModule,
+  ],
   controllers: [],
   providers: [],
 })
