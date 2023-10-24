@@ -9,8 +9,10 @@ export class UserDao {
 
   async findAll(page: number, limit: number, query?) {
     try {
-      const users = await this.userModel.paginate(query && query, { page: page, limit: limit });
-      return users;
+      // const users = await this.userModel.paginate(query && query, { page: page, limit: limit });
+      const users = await this.userModel.findById(query).select('-_id friends').populate('friends.friend');
+      const friends = users.friends.map((user) => user.friend);
+      return friends;
     } catch (err) {
       console.log('Error:' + err.message);
       return null;

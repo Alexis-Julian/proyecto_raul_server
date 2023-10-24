@@ -4,7 +4,6 @@ import { LoginAuthDto } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { Response } from 'express';
 import { Users } from 'src/schemas/user.model';
-import { Session } from 'express-session';
 
 @Controller('api/auth')
 export class AuthController {

@@ -1,11 +1,12 @@
 import { OnModuleInit } from '@nestjs/common';
-import { MessageBody, SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
+import { WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 import { Users } from 'src/schemas/user.model';
+import gatewayChat from './gateway-chat';
 
 import { extractUserConnecting } from 'src/utils/socket.utils';
 
-interface UserActive extends Users {
+export interface UserActive extends Users {
   chat_friend: string | undefined;
 }
 let UsersActive: Array<UserActive> = [];
@@ -20,15 +21,7 @@ export class MyGateway implements OnModuleInit {
       UsersActive.push(user);
       console.log(`Socket conectado: ${user.username}`);
 
-      //Mueve al usuario a otro chat
-      socket.on('moveChat', ({ idchat }) => {
-        user.chat_friend = idchat;
-      });
-
-      //Envio de mensajes
-      socket.on('sendMessage', (body) => {
-        socket.emit(user.chat_friend + ':message', 'Hola!');
-      });
+      gatewayChat(socket, user);
 
       //Deconecta al usuario
       socket.on('disconnect', () => {

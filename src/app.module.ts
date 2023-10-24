@@ -18,6 +18,7 @@ import { AuthViewModule } from './views/auth-view/auth-view.module';
 import { WorkersModule } from './api/workers/workers.module';
 import { GatewayModule } from './gateway/gateway.module';
 import { FriendsModule } from './api/friends/friends.module';
+import { ChatModule } from './api/chat/chat.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -31,6 +32,7 @@ import { FriendsModule } from './api/friends/friends.module';
     WorkersModule,
     GatewayModule,
     FriendsModule,
+    ChatModule,
     viewChatModule,
     viewProductsModule,
     viewFriendModule,

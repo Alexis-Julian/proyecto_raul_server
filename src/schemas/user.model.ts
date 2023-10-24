@@ -43,7 +43,7 @@ export class Users {
 
   @Prop([
     {
-      friend: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+      friend: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
     },
   ])
   friends: { friend: Types.ObjectId }[];
