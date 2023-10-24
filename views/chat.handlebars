@@ -1,6 +1,5 @@
-<div class='grid grid-cols-2'>
-  <div>
-    <div class='relative overflow-x-auto sm:rounded-lg'>
+<div class='flex h-5/6'>
+    <div class='relative overflow-x-auto sm:rounded-lg w-2/5 flex flex-col  items-center'>
       <div class='flex items-center justify-between py-4 bg-white dark:bg-gray-800'>
         <label for='table-search' class='sr-only'>Search</label>
         <div class='relative'>
@@ -17,16 +16,23 @@
           />
         </div>
       </div>
-      <table class='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
-        <tbody>
+      <table class='text-sm text-left text-gray-500 dark:text-gray-400 w-full'>
+        <tbody class="grid grid-cols-1">
+          {{#each friends}}
             {{> table-friend}}
+          {{/each}}
         </tbody>
       </table>
       <!-- Edit user modal -->
+    </div>
+  <div class="w-4/5" id="panel_chat">
+    
   </div>
-  <div>
-    CHAT
-  </div>
+  
 </div>
 <script src='https://cdn.socket.io/4.5.4/socket.io.min.js'></script>
 <script src='/js/chat/socket.js'></script>
+
+
+
+

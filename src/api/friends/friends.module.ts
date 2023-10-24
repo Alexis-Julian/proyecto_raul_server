@@ -11,5 +11,6 @@ import { FriendsUtils } from './friends-utils.service';
   imports: [ConfigModule.forRoot(), MongooseModule.forFeature([{ name: 'Users', schema: UserSchema }])],
   controllers: [FriendsController],
   providers: [FriendsService, FriendsUtils, UserDao],
+  exports: [FriendsService, FriendsUtils, UserDao],
 })
 export class FriendsModule {}
