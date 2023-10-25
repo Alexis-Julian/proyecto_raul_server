@@ -17,7 +17,7 @@
         </div>
       </div>
       <table class='text-sm text-left text-gray-500 dark:text-gray-400 w-full'>
-        <tbody class="grid grid-cols-1">
+        <tbody class="grid grid-cols-1" id="list_friends">
           {{#each friends}}
             {{> table-friend}}
           {{/each}}
@@ -31,7 +31,7 @@
   
 </div>
 <script src='https://cdn.socket.io/4.5.4/socket.io.min.js'></script>
-<script src='/js/chat/socket.js'></script>
+<script defer src='/js/chat/index.js' type="module"></script>
 
 
 
