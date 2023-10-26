@@ -29,6 +29,16 @@ export class UserDao {
     }
   }
 
+  async test(id: any) {
+    try {
+      const userFind: Users = await this.userModel.findById(id).populate('chats.idchat');
+      return userFind;
+    } catch (err) {
+      console.log('Error:' + err.message);
+      return null;
+    }
+  }
+
   async findOne(query?: any) {
     try {
       const userFind: Users = await this.userModel.findOne(query && query);

@@ -35,8 +35,8 @@ export class Users {
 
   @Prop([
     {
-      idchat: { type: mongoose.Schema.Types.ObjectId, ref: 'chats' },
-      user: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+      idchat: { type: mongoose.Schema.Types.ObjectId, ref: 'Chats' },
+      user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
     },
   ])
   chats: Types.ObjectId;
