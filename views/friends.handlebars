@@ -6,12 +6,12 @@
         <div id="list_people" class="flex flex-col items-center gap-2 ">
         </div>
     </div>
-    <div class="w-full grid overflow-y-scroll justify-center " >
+    <form class="w-full grid overflow-y-scroll justify-center" id="add_people" >
         {{#each friends}}
             <div class="h-64 w-80 ">
                 {{>card-friend}}
             </div>
         {{/each}}
-    </div>
+    </form>
 </div>
 <script src="/js/friends/index.js" type="module"></script>
