@@ -1,3 +1,17 @@
-{{#each friends}}
-    {{>card-friend}}
-{{/each}}
+<div class="grid grid-cols-2 h-5/6 ">
+    <div class="border-solid border-r-2 border-quaternary-color relative overflow-y-scroll">
+        <form class="flex justify-center fixed p-2" id="search_people">
+            <input type="text" autocomplete="off" name="username" placeholder="A quien desea buscar?" class="rounded-lg">
+        </form>
+        <div id="list_people" class="flex flex-col items-center gap-2 ">
+        </div>
+    </div>
+    <div class="w-full grid overflow-y-scroll justify-center " >
+        {{#each friends}}
+            <div class="h-64 w-80 ">
+                {{>card-friend}}
+            </div>
+        {{/each}}
+    </div>
+</div>
+<script src="/js/friends/index.js" type="module"></script>

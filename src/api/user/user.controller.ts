@@ -1,4 +1,4 @@
-import { Get, Delete, Patch, Body, Query } from '@nestjs/common';
+import { Get, Delete, Patch, Body, Query, Param } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { UserService } from './user.service';
 
@@ -9,6 +9,11 @@ export class UserController {
   @Get()
   findAll(@Query('page') page: number = 1, @Query('limit') limit: number = 15) {
     return this.userService.findAll(page, limit);
+  }
+
+  @Get(':name')
+  findByName(@Param('name') name: string) {
+    return this.userService.findByName(name);
   }
 
   @Patch(':id')

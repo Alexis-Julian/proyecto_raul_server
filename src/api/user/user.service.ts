@@ -13,6 +13,10 @@ export class UserService {
     return; //await this.userDao.findById(id);
   }
 
+  async findByName(name: string) {
+    return await this.userDao.findByName(name);
+  }
+
   update() {
     return 'Update user';
   }

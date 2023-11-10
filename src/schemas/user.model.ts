@@ -39,7 +39,7 @@ export class Users {
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
     },
   ])
-  chats: Types.ObjectId;
+  chats: { idchat: Types.ObjectId; user: Types.ObjectId }[];
 
   @Prop([
     {

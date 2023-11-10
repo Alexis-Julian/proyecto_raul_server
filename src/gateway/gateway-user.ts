@@ -2,6 +2,7 @@ import { Socket } from 'socket.io';
 import { UserActive } from './gateway';
 import { UserDao } from 'src/dao/user.dao';
 import { getFriend } from 'src/api/friends/dto/get-friend.dto';
+import { ChatService } from 'src/api/chat/chat.service';
 import { Inject } from '@nestjs/common/decorators';
 export class User {
   /* userDao: UserDao; */
@@ -12,10 +13,13 @@ export class User {
   private id: string;
   private socket: Socket;
 
+  /* @Inject('UserDao')
+@Inject('getChat') */
   constructor(
     socket: Socket,
     user: UserActive,
-    @Inject('UserDao') private userDao: UserDao, //Aseguramos que no se cree una instancia nueva por cada user
+    private userDao: UserDao, //Aseguramos que no se cree una instancia nueva por cada user
+    private chatService: ChatService,
   ) {
     this.socket = socket;
     this.username = user.username;
@@ -42,8 +46,7 @@ export class User {
   ChatChange() {
     this.socket.on('client:chat_change', async (idfriend) => {
       const friend = await this.userDao.test(idfriend);
-
-      console.log(friend);
+      this.chatService.getChat(idfriend, this.id);
       this.chat = idfriend;
       this.socket.emit('server:chat_change', new getFriend(friend));
     });

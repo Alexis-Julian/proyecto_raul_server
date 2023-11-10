@@ -39,6 +39,15 @@ export class UserDao {
     }
   }
 
+  async findByName(name: string) {
+    try {
+      return await this.userModel.find({ username: { $regex: new RegExp(name, 'i') } });
+    } catch (err) {
+      console.log('Error:' + err.message);
+      return null;
+    }
+  }
+
   async findOne(query?: any) {
     try {
       const userFind: Users = await this.userModel.findOne(query && query);
