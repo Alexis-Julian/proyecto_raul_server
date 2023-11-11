@@ -3,10 +3,10 @@
         <form class="flex justify-center fixed p-2" id="search_people">
             <input type="text" autocomplete="off" name="username" placeholder="A quien desea buscar?" class="rounded-lg">
         </form>
-        <div id="list_people" class="flex flex-col items-center gap-2 ">
-        </div>
+        <form id="list_people" class="flex flex-col items-center gap-2 ">
+        </form>
     </div>
-    <form class="w-full grid overflow-y-scroll justify-center" id="add_people" >
+    <form method="submit" class="w-full grid overflow-y-scroll justify-center" id="add_people" >
         {{#each friends}}
             <div class="h-64 w-80 ">
                 {{>card-friend}}
