@@ -10,6 +10,11 @@ export class FriendsController {
     return this.friendsService.getFriends(page, limit, req);
   }
 
+  @Get('search/:name')
+  getPeople(@Param('name') name: string, @Req() req: any) {
+    return this.friendsService.getPeople(name, req);
+  }
+
   @Get('add/:id')
   addFriend(@Param('id') id: string, @Req() req: any) {
     return this.friendsService.addFriend(id, req);

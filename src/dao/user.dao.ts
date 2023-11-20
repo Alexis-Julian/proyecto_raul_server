@@ -19,7 +19,7 @@ export class UserDao {
     }
   }
 
-  async findById(id: any) {
+  async findById(id: string) {
     try {
       const userFind: Users = await this.userModel.findById(id);
       return userFind;
@@ -39,7 +39,7 @@ export class UserDao {
     }
   }
 
-  async findByName(name: string) {
+  async findByName(name: string): Promise<Users[]> {
     try {
       return await this.userModel.find({ username: { $regex: new RegExp(name, 'i') } });
     } catch (err) {

@@ -17,6 +17,24 @@ export class FriendsService {
     return this.userDao.findAll(page, limit, { _id: _id });
   }
 
+  async getPeople(name: string, req: any) {
+    const _id = req.session.user._id;
+
+    const { friends, request } = await this.userDao.findById(_id);
+
+    const users: string[] = [];
+
+    friends && friends.map((user) => users.push(String(user.friend)));
+
+    request && request.map((user) => users.push(String(user.user)));
+
+    const peoples = await this.userDao.findByName(name);
+
+    const filteredPeople = peoples.filter((user) => !users.includes(user.id));
+
+    return filteredPeople;
+  }
+
   async addFriend(id: string, req: any) {
     let saveUser;
     let saveFriend;
