@@ -17,6 +17,14 @@ export class FriendsService {
     return this.userDao.findAll(page, limit, { _id: _id });
   }
 
+  async getRequest(req: any) {
+    const _id = req.session.user._id;
+
+    const { request } = await this.userDao.findById(_id, { request: 1, _id: 0 });
+
+    return request;
+  }
+
   async getPeople(name: string, req: any) {
     const _id = req.session.user._id;
 
@@ -25,7 +33,6 @@ export class FriendsService {
     const users: string[] = [];
 
     friends && friends.map((user) => users.push(String(user.friend)));
-
     request && request.map((user) => users.push(String(user.user)));
 
     const peoples = await this.userDao.findByName(name);

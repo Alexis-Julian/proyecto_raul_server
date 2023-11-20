@@ -1,9 +1,11 @@
 <div class="grid grid-cols-2 h-5/6 ">
     <div class="border-solid border-r-2 border-quaternary-color relative overflow-y-scroll">
-        <form class="flex justify-center fixed p-2" id="search_people">
+        <form class="flex justify-around p-2 " id="search_people">
+            <button type="button" id="btn_friend" class='inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'>Friends</button>
             <input type="text" autocomplete="off" name="username" placeholder="A quien desea buscar?" class="rounded-lg">
+            <button type="button" id="btn_request" class='inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>Requests</button>
         </form>
-        <form id="list_people" class="flex flex-col items-center gap-2 ">
+        <form id="list_people" class="grid grid-cols-2 justify-items-center gap-3">
         </form>
     </div>
     <form method="submit" class="w-full grid overflow-y-scroll justify-center" id="add_people" >

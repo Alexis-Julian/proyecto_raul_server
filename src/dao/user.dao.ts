@@ -19,9 +19,9 @@ export class UserDao {
     }
   }
 
-  async findById(id: string) {
+  async findById(id: string, query?) {
     try {
-      const userFind: Users = await this.userModel.findById(id);
+      const userFind: Users = await this.userModel.findById(id, query && query).populate('request.user');
       return userFind;
     } catch (err) {
       console.log('Error:' + err.message);

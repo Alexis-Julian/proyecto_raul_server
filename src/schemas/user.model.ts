@@ -48,7 +48,7 @@ export class Users {
   ])
   friends: { friend: Types.ObjectId }[];
 
-  @Prop([{ user: { type: mongoose.Schema.Types.ObjectId, ref: 'users' }, status: { type: Boolean, default: false } }])
+  @Prop([{ user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }, status: { type: Boolean, default: false } }])
   request: { user: Types.ObjectId; status: boolean }[];
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'carts' })
