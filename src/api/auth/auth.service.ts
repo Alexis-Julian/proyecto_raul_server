@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { Response } from 'express';
-
 import { UserDao } from '../../dao/user.dao';
 import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';

@@ -20,7 +20,7 @@ export class FriendsService {
   async getRequest(req: any) {
     const _id = req.session.user._id;
 
-    const { request } = await this.userDao.findById(_id, { request: 1, _id: 0 });
+    const { request } = await this.userDao.test1(_id, { request: 1, _id: 0 });
 
     return request;
   }

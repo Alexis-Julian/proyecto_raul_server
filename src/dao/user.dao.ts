@@ -21,7 +21,7 @@ export class UserDao {
 
   async findById(id: string, query?) {
     try {
-      const userFind: Users = await this.userModel.findById(id, query && query).populate('request.user');
+      const userFind: Users = await this.userModel.findById(id, query && query);
       return userFind;
     } catch (err) {
       console.log('Error:' + err.message);
@@ -32,6 +32,16 @@ export class UserDao {
   async test(id: any) {
     try {
       const userFind: Users = await this.userModel.findById(id).populate('chats.idchat');
+      return userFind;
+    } catch (err) {
+      console.log('Error:' + err.message);
+      return null;
+    }
+  }
+
+  async test1(id: string, query?) {
+    try {
+      const userFind: Users = await this.userModel.findById(id, query && query).populate('request.user');
       return userFind;
     } catch (err) {
       console.log('Error:' + err.message);

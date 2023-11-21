@@ -1,6 +1,6 @@
 export function RenderCard(user) {
   return `
-    <div class='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+    <div  data-aos="flip-up" class='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
         <div class='flex justify-end px-4 pt-4'>
             <button
             id='dropdownButton'
@@ -48,7 +48,7 @@ export function RenderCard(user) {
 //Buscar la manera de paramterizar estas lineas
 export function RenderCardFriend(user) {
   return `
-      <div class='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+      <div  data-aos="flip-up" class='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
           <div class='flex justify-end px-4 pt-4'>
               <button
               id='dropdownButton'
@@ -96,7 +96,7 @@ export function RenderCardFriend(user) {
 //Buscar la manera de paramterizar estas lineas
 export function RenderCardRequest(user) {
   return `
-        <div class='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+        <div  data-aos="flip-up" class='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
             <div class='flex justify-end px-4 pt-4'>
                 <button
                 id='dropdownButton'
